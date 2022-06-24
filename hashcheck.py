@@ -79,7 +79,11 @@ def checkFile(filepath):
 
 #Cool kids do recursion
 def getfiles(dir):
-    files = [dir + "/" + file for file in os.listdir(dir)]
+    if os.path.isdir(dir):
+        files = [dir + "/" + file for file in os.listdir(dir)]
+    else:
+        return [dir]
+    
     for file in files:
         if (os.path.isdir(file)):
             for rfile in getfiles(file):
